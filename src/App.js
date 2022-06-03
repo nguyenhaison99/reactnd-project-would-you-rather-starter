@@ -1,9 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
-import "./App.css";
 import { handleInitialData } from "./actions/shared";
+import authUser from "./reducers/authUser";
+import Login from "./components/Login";
+import Home from "./components/Home";
+import Nav from "./components/Nav";
+import "./App.css";
 
 class App extends Component {
   componentDidMount() {
@@ -13,9 +17,22 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          <ContentGrid>
-            <p>Hello World</p>
-          </ContentGrid>
+          {authUser === null ? (
+            () => (
+              <ContentGrid>
+                <Login />
+              </ContentGrid>
+            )
+          ) : (
+            <Fragment>
+              <Nav />
+              <ContentGrid>
+                <Routes>
+                  <Route exact path='/' element={<Home />} />
+                </Routes>
+              </ContentGrid>
+            </Fragment>
+          )}
         </div>
       </Router>
     );
@@ -30,4 +47,8 @@ const ContentGrid = ({ children }) => (
   </Grid>
 );
 
-export default connect(null, { handleInitialData })(App);
+function mapStateToProps({ authUser }) {
+  return { authUser };
+}
+
+export default connect(mapStateToProps, { handleInitialData })(App);
