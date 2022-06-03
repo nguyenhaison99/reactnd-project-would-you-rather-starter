@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Grid } from "semantic-ui-react";
+import { connect } from "react-redux";
+import "./App.css";
+import { handleInitialData } from "./actions/shared";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    this.props.handleInitialData();
+  }
+  render() {
+    return (
+      <Router>
+        <div className='App'>
+          <ContentGrid>
+            <p>Hello World</p>
+          </ContentGrid>
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
+const ContentGrid = ({ children }) => (
+  <Grid padded='vertically' columns={1} centered>
+    <Grid.Row>
+      <Grid.Column style={{ maxWidth: 550 }}>{children}</Grid.Column>
+    </Grid.Row>
+  </Grid>
+);
+
+export default connect(null, { handleInitialData })(App);

@@ -1,4 +1,4 @@
-import { getInitialData } from "../utils/api";
+import { getInitialData } from "../utils/API";
 import { receiveQuestions } from "../actions/questions";
 import { receiveUsers } from "../actions/users";
 
