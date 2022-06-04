@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
+import { setAuthUser } from "./actions/authUser";
 import Login from "./components/login/Login";
 import Home from "./components/main/Home";
 import Nav from "./components/Nav";
 import UserCard from "./components/main/UserCard";
+import { Redirect } from "react-router-dom";
 // import "./App.css";
 
 class App extends Component {
@@ -19,13 +21,9 @@ class App extends Component {
 			<Router>
 				<div className="App">
 					{this.props.authUser === null ? (
-						<Route
-							path="/*"
-							render={() => (
-								<ContentGrid>
-									<Login />
-								</ContentGrid>
-							)}
+						<BackToLogin
+							authUser={this.props.authUser}
+							setAuthUser={this.props.setAuthUser}
 						/>
 					) : (
 						<Fragment>
@@ -33,6 +31,7 @@ class App extends Component {
 							<ContentGrid>
 								<Switch>
 									<Route exact path="/" component={Home} />
+									<Route path="/login" component={LoginContentGrid} />
 									<Route path="/questions/:question_id" component={UserCard} />
 								</Switch>
 							</ContentGrid>
@@ -44,6 +43,24 @@ class App extends Component {
 	}
 }
 
+class BackToLogin extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			authUser: this.props.authUser,
+			setAuthUser: this.props.setAuthUser,
+		};
+	}
+	componentDidMount() {
+		this.state.setAuthUser("");
+	}
+
+	render() {
+		return <Redirect to="/login" />;
+	}
+}
+
 const ContentGrid = ({ children }) => (
 	<Grid padded="vertically" columns={1} centered>
 		<Grid.Row>
@@ -52,8 +69,18 @@ const ContentGrid = ({ children }) => (
 	</Grid>
 );
 
+const LoginContentGrid = () => {
+	return (
+		<ContentGrid>
+			<Login />
+		</ContentGrid>
+	);
+};
+
 function mapStateToProps({ authUser }) {
 	return { authUser };
 }
 
-export default connect(mapStateToProps, { handleInitialData })(App);
+export default connect(mapStateToProps, { handleInitialData, setAuthUser })(
+	App
+);

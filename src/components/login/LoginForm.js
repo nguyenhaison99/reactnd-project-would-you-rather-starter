@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Header, Form, FormDropdown } from "semantic-ui-react";
 import { setAuthUser } from "../../actions/authUser";
+import { Redirect } from "react-router-dom";
 
 class LoginForm extends Component {
 	state = {
 		value: "",
+		submitSucceded: false,
 	};
 
 	static propTypes = {
@@ -25,7 +27,10 @@ class LoginForm extends Component {
 		new Promise((res, rej) => {
 			onLoading();
 			setTimeout(() => res(), 500);
-		}).then(() => setAuthUser(authUser));
+		}).then(() => {
+			setAuthUser(authUser);
+			this.setState({ submitSucceded: true });
+		});
 	};
 
 	generateDropdownData = () => {
@@ -41,6 +46,8 @@ class LoginForm extends Component {
 	render() {
 		const { value } = this.state;
 		const disabled = value === "" ? true : false;
+
+		if (this.state.submitSucceded === true) return <Redirect to="/" />;
 
 		return (
 			<Form onSubmit={this.handleSubmit}>

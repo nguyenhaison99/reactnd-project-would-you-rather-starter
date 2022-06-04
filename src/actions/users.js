@@ -3,6 +3,7 @@ import { saveQuestionAnswer } from "../utils/API";
 
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const ADD_ANSWER_TO_USER = "ADD_ANSWER_TO_USER";
+export const ADD_QUESTION_TO_USER = "ADD_QUESTION_TO_USER";
 
 export function receiveUsers(users) {
 	return {
@@ -30,5 +31,13 @@ export function handleSaveQuestionAnswer(authUser, questionId, answer) {
 		} catch (e) {
 			console.warn("Failed to save QuestionAnswer", e);
 		}
+	};
+}
+
+export function addQuestionToUser({ author, questionId }) {
+	return {
+		type: ADD_QUESTION_TO_USER,
+		questionId,
+		author,
 	};
 }

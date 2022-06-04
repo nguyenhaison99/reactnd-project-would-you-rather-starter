@@ -18,7 +18,7 @@ export const styles = {
 	},
 	secondary: {
 		color: "grey",
-		bgColor: "#f4f4f4",
+		bgColor: "lightgray",
 	},
 };
 
@@ -73,9 +73,9 @@ class PollResult extends Component {
 					{userVote === "optionOne" && <YourVoteLabel />}
 					<p style={{ fontWeight: "bold" }}>{question.optionOne.text}</p>
 					<Progress
-						percent={((optionOneVotes / votesTotal) * 100).toFixed(2)}
-						progress
 						color={option1.color}
+						percent={((optionOneVotes / votesTotal) * 100).toFixed(1)}
+						progress
 					>
 						{optionOneVotes} out of {votesTotal} votes
 					</Progress>
@@ -88,18 +88,16 @@ class PollResult extends Component {
 
 					<p style={{ fontWeight: "bold" }}>{question.optionTwo.text}</p>
 					<Progress
-						percent={((optionTwoVotes / votesTotal) * 100).toFixed(2)}
-						progress
 						color={option2.color}
+						percent={((optionTwoVotes / votesTotal) * 100).toFixed(1)}
+						progress
 					>
 						{optionTwoVotes} out of {votesTotal} votes
 					</Progress>
 				</Segment>
-				{/* <Form.Field> */}
 				<Button size="tiny" floated="right" onClick={this.handleClick}>
 					Back
 				</Button>
-				{/* </Form.Field> */}
 			</Fragment>
 		);
 	}

@@ -46,7 +46,6 @@ class UserCard extends Component {
 			unanswered = null,
 		} = this.props;
 
-		console.log(author);
 		if (questionNotFound === true) {
 			return <Redirect to="/questions/question_not_found" />;
 		}
