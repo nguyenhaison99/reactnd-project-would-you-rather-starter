@@ -1,3 +1,15 @@
+SonNh65
+## Installation
+
+Clone the repository, change directories, and use NPM to install the dependencies.
+
+```bash
+$ git clone [https://github.com/nguyenhaison99/reactnd-project-would-you-rather-starter.git](https://github.com/nguyenhaison99/reactnd-project-would-you-rather-starter.git)
+$ cd reactnd-project-would-you-rather-starter
+$ npm install
+```
+
+# Below is note from Udacity
 # Would You Rather Project
 
 This is the starter code for the final assessment project for Udacity's React & Redux course.
