@@ -20,7 +20,7 @@ class App extends Component {
 					{this.props.authUser === null ? (
 						<Routes>
 							<Route
-								path="/"
+								path="/*"
 								element={
 									<ContentGrid>
 										<Login />
@@ -33,7 +33,7 @@ class App extends Component {
 							<Nav />
 							<ContentGrid>
 								<Routes>
-									<Route exact path="/" element={<Home />} />
+									<Route exact path="/abc" element={<Home />} />
 								</Routes>
 							</ContentGrid>
 						</Fragment>
