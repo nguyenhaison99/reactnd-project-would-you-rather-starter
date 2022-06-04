@@ -4,7 +4,7 @@ SonNh65
 Clone the repository, change directories, and use NPM to install the dependencies.
 
 ```bash
-$ git clone [https://github.com/nguyenhaison99/reactnd-project-would-you-rather-starter.git](https://github.com/nguyenhaison99/reactnd-project-would-you-rather-starter.git)
+$ git clone https://github.com/nguyenhaison99/reactnd-project-would-you-rather-starter.git
 $ cd reactnd-project-would-you-rather-starter
 $ npm install
 ```
