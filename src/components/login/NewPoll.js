@@ -47,7 +47,7 @@ class NewPoll extends Component {
 	};
 
 	render() {
-		console.log("this.props", this.props);
+		// console.log("this.props", this.props);
 		const disabled = this.state.option1 === "" || this.state.option2 === "";
 
 		if (this.state.submitSucceded === true) return <Redirect to="/" />;
@@ -95,6 +95,8 @@ class NewPoll extends Component {
 	}
 }
 
-const mapStateToProps = ({ authUser }) => authUser;
+function mapStateToProps({ authUser }) {
+	return { authUser };
+}
 
 export default connect(mapStateToProps, { handleSaveQuestion })(NewPoll);

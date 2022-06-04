@@ -9,6 +9,9 @@ import Home from "./components/main/Home";
 import Nav from "./components/Nav";
 import UserCard from "./components/main/UserCard";
 import { Redirect } from "react-router-dom";
+import NewPoll from "./components/login/NewPoll";
+import Leaderboard from "./components/main/Leaderboard";
+import PageNotFound from "./components/PageNotFound";
 // import "./App.css";
 
 class App extends Component {
@@ -32,7 +35,10 @@ class App extends Component {
 								<Switch>
 									<Route exact path="/" component={Home} />
 									<Route path="/login" component={LoginContentGrid} />
+									<Route path="/addpoll" component={NewPoll} />
+									<Route path="/leaderboard" component={Leaderboard} />
 									<Route path="/questions/:question_id" component={UserCard} />
+									<Route path="/questions/*" component={PageNotFound} />
 								</Switch>
 							</ContentGrid>
 						</Fragment>

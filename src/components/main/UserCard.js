@@ -47,7 +47,7 @@ class UserCard extends Component {
 		} = this.props;
 
 		if (questionNotFound === true) {
-			return <Redirect to="/questions/question_not_found" />;
+			return <Redirect to="/question_not_found" />;
 		}
 
 		return (

@@ -23,8 +23,8 @@ function addAnswerToUser(authUser, questionId, answer) {
 
 export function handleSaveQuestionAnswer(authUser, questionId, answer) {
 	return async (dispatch) => {
-		dispatch(addAnswerToUser(authUser, questionId, answer));
-		dispatch(addAnswerToQuestion(authUser, questionId, answer));
+		await dispatch(addAnswerToUser(authUser, questionId, answer));
+		await dispatch(addAnswerToQuestion(authUser, questionId, answer));
 
 		try {
 			return await saveQuestionAnswer(authUser, questionId, answer);

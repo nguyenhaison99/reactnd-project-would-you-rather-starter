@@ -35,7 +35,7 @@ export function handleSaveQuestion(optionOneText, optionTwoText, author) {
 			optionTwoText,
 			author,
 		});
-		dispatch(addQuestion(question));
-		dispatch(addQuestionToUser(question));
+		await dispatch(addQuestion(question));
+		await dispatch(addQuestionToUser(question));
 	};
 }
