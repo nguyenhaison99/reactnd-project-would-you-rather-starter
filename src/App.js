@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
 import Login from "./components/login/Login";
-import Home from "./components/Home";
+import Home from "./components/main/Home";
 import Nav from "./components/Nav";
-import "./App.css";
+import UserCard from "./components/main/UserCard";
+// import "./App.css";
 
 class App extends Component {
 	componentDidMount() {
@@ -18,23 +19,22 @@ class App extends Component {
 			<Router>
 				<div className="App">
 					{this.props.authUser === null ? (
-						<Routes>
-							<Route
-								path="/*"
-								element={
-									<ContentGrid>
-										<Login />
-									</ContentGrid>
-								}
-							/>
-						</Routes>
+						<Route
+							path="/*"
+							render={() => (
+								<ContentGrid>
+									<Login />
+								</ContentGrid>
+							)}
+						/>
 					) : (
 						<Fragment>
 							<Nav />
 							<ContentGrid>
-								<Routes>
-									<Route exact path="/abc" element={<Home />} />
-								</Routes>
+								<Switch>
+									<Route exact path="/" component={Home} />
+									<Route path="/questions/:question_id" component={UserCard} />
+								</Switch>
 							</ContentGrid>
 						</Fragment>
 					)}

@@ -35,10 +35,10 @@ class Nav extends Component {
 							<Button
 								content="Logout"
 								labelPosition="right"
-								basic
-								compact
 								icon="log out"
 								size="mini"
+								basic
+								compact
 								onClick={this.handleLogout}
 							/>
 						</Menu.Item>
