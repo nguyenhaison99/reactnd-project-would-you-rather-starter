@@ -99,6 +99,7 @@ function mapStateToProps(
 		question = questions[question_id];
 		const user = users[authUser];
 
+		console.log(question);
 		if (question === undefined) {
 			questionNotFound = true;
 		} else {

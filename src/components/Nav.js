@@ -8,9 +8,11 @@ class Nav extends Component {
 	handleLogout = (e) => {
 		e.preventDefault();
 		this.props.setAuthUser(null);
+		localStorage.setItem("authUser", "not_login");
 	};
 
 	render() {
+		console.log(this.props);
 		const { authUser, users } = this.props;
 		return (
 			authUser && (

@@ -24,12 +24,14 @@ class LoginForm extends Component {
 		const { onLoading, setAuthUser } = this.props;
 		const authUser = this.state.value;
 
+		this.setState({ submitSucceded: true });
+		localStorage.setItem("authUser", authUser);
+
 		new Promise((res, rej) => {
 			onLoading();
 			setTimeout(() => res(), 500);
 		}).then(() => {
 			setAuthUser(authUser);
-			this.setState({ submitSucceded: true });
 		});
 	};
 

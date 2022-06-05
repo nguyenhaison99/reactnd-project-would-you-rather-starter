@@ -8,7 +8,6 @@ import Login from "./components/login/Login";
 import Home from "./components/main/Home";
 import Nav from "./components/Nav";
 import UserCard from "./components/main/UserCard";
-import { Redirect } from "react-router-dom";
 import NewPoll from "./components/login/NewPoll";
 import Leaderboard from "./components/main/Leaderboard";
 import PageNotFound from "./components/PageNotFound";
@@ -24,24 +23,30 @@ class App extends Component {
 			<Router>
 				<div className="App">
 					{this.props.authUser === null ? (
-						<BackToLogin
-							authUser={this.props.authUser}
-							setAuthUser={this.props.setAuthUser}
-						/>
+						<Route render={() => <LoginContentGrid />} />
 					) : (
-						<Fragment>
-							<Nav />
-							<ContentGrid>
-								<Switch>
-									<Route exact path="/" component={Home} />
-									<Route path="/login" component={LoginContentGrid} />
-									<Route path="/addpoll" component={NewPoll} />
-									<Route path="/leaderboard" component={Leaderboard} />
-									<Route path="/questions/:question_id" component={UserCard} />
-									<Route path="/questions/*" component={PageNotFound} />
-								</Switch>
-							</ContentGrid>
-						</Fragment>
+						this.props.authUser !== "not_login" && (
+							<Fragment>
+								<Nav />
+								<ContentGrid>
+									<Switch>
+										<Route exact path="/" component={Home} />
+										{/* <Route exact path="/login" component={LoginContentGrid} /> */}
+										<Route path="/addpoll" component={NewPoll} />
+										<Route path="/leaderboard" component={Leaderboard} />
+										<Route
+											path="/questions/question_not_found"
+											component={PageNotFound}
+										/>
+										<Route
+											path="/questions/:question_id"
+											component={UserCard}
+										/>
+										<Route component={PageNotFound} />
+									</Switch>
+								</ContentGrid>
+							</Fragment>
+						)
 					)}
 				</div>
 			</Router>
@@ -49,23 +54,23 @@ class App extends Component {
 	}
 }
 
-class BackToLogin extends Component {
-	constructor(props) {
-		super(props);
+// class BackToLogin extends Component {
+// 	constructor(props) {
+// 		super(props);
 
-		this.state = {
-			authUser: this.props.authUser,
-			setAuthUser: this.props.setAuthUser,
-		};
-	}
-	componentDidMount() {
-		this.state.setAuthUser("");
-	}
+// 		this.state = {
+// 			authUser: this.props.authUser,
+// 			setAuthUser: this.props.setAuthUser,
+// 		};
+// 	}
+// 	componentDidMount() {
+// 		this.state.setAuthUser("");
+// 	}
 
-	render() {
-		return <Redirect to="/login" />;
-	}
-}
+// 	render() {
+// 		return <Redirect to="/login" />;
+// 	}
+// }
 
 const ContentGrid = ({ children }) => (
 	<Grid padded="vertically" columns={1} centered>

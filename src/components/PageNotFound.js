@@ -7,14 +7,14 @@ export class PageNotFound extends Component {
 		outOfTime: false,
 	};
 	render() {
-		if (this.state.outOfTime === true) return <Redirect to="/login" />;
+		if (this.state.outOfTime === true) return <Redirect to="/" />;
 		return (
 			<Container textAlign="center">
 				<Header as="h2">PageNotFound: 404 Error</Header>
 				<h5>Redirecting you to Home Page in a few seconds.</h5>
 				{setTimeout(() => {
 					this.setState({ outOfTime: !this.state.outOfTime });
-				}, 3000)}
+				}, 1500)}
 			</Container>
 		);
 	}
