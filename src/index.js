@@ -5,13 +5,12 @@ import { legacy_createStore as createStore } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "./reducers/index";
 import middlewares from "./middleware";
-import "antd/dist/antd.css";
 
 const store = createStore(rootReducer, middlewares);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<Provider store={store}>
-		<App />
-	</Provider>
+  <Provider store={store}>
+    <App />
+  </Provider>
 );

@@ -3,8 +3,13 @@ import { Menu, Dropdown, Space } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { setAuthUser } from "../actions/authUser";
+import { Navigate } from "react-router";
 
 class LoginDropdown extends Component {
+  state = {
+    loginSucceded: false,
+  };
+
   generateDropdownData = (users) => {
     return users.map((user) => ({
       key: user.id,
@@ -15,10 +20,14 @@ class LoginDropdown extends Component {
   handleOnClick = (e) => {
     const { setAuthUser } = this.props;
     setAuthUser(e.key);
-    localStorage.setItem("authUser", e.key);
+
+    // localStorage.setItem("authUser", e.key);
+    this.setState({ loginSucceded: true });
   };
 
   render() {
+    if (this.state.loginSucceded === true) return <Navigate to='/home' />;
+
     const { users } = this.props;
     return (
       <Dropdown
