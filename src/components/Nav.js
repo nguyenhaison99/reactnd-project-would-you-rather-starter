@@ -14,6 +14,7 @@ class Nav extends Component {
 
   render() {
     const { authUser } = this.props;
+
     return (
       <div className='topnav'>
         <ul>

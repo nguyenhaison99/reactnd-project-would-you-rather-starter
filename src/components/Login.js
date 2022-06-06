@@ -8,7 +8,7 @@ export default function Login() {
       <Row justify='center'>
         <Col align='middle' justify='center' span={8}>
           <h1>Would You Rather</h1>
-          <Image width={300} src='images/dog.png' />
+          <Image width={300} src='images/dog.png' preview={false} />
           <br />
           <br />
           <LoginDropdown />

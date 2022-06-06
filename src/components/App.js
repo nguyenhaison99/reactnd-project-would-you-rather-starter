@@ -1,5 +1,5 @@
-import { Fragment, Component } from "react";
 import { connect } from "react-redux";
+import { Fragment, Component } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { handleInitialData } from "../actions/shared";
@@ -10,7 +10,9 @@ import Nav from "./Nav";
 import Home from "./Home";
 import NewPoll from "./NewPoll";
 import LeaderBroad from "./LeaderBroad";
+import "../styles/Main.css";
 import "antd/dist/antd.css";
+import PollContent from "./PollContent";
 
 class App extends Component {
   // state = {
@@ -41,6 +43,7 @@ class App extends Component {
               <Route path='/home' element={<Home />} />
               <Route path='/addpoll' element={<NewPoll />} />
               <Route path='/leaderboard' element={<LeaderBroad />} />
+              <Route path='/questions/:id' element={<PollContent />} />
             </Routes>
           </Fragment>
         </Router>
