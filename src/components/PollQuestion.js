@@ -15,8 +15,8 @@ export const PollQuestion = (props) => {
     setValue(e.target.value);
   };
 
-  async function handleOnClick() {
-    await handleSaveQuestionAnswer(authUser, question.id, value);
+  function handleOnClick() {
+    handleSaveQuestionAnswer(authUser, question.id, value);
     navigate("/home");
     // setIsSubmit(true);
   }
