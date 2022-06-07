@@ -1,21 +1,11 @@
-import { getInitialData } from "../utils/API";
-import { receiveQuestions } from "../actions/questions";
-import { receiveUsers } from "../actions/users";
-import { setAuthUser } from "./authUser";
+import { initApplicationData } from "../utils/API";
+import { initQuestionsData } from "../actions/questions";
+import { initUsersData } from "../actions/users";
 
 export function handleInitialData() {
 	return async (dispatch) => {
-		const { users, questions } = await getInitialData();
-		const _authUser = localStorage.getItem("authUser");
-		if (_authUser !== "not_login") {
-			console.log("Setting");
-			new Promise((res, rej) => {
-				setTimeout(() => res(), 500);
-			}).then(() => {
-				dispatch(setAuthUser(_authUser));
-			});
-		}
-		dispatch(receiveUsers(users));
-		dispatch(receiveQuestions(questions));
+		const { users, questions } = await initApplicationData();
+		dispatch(initUsersData(users));
+		dispatch(initQuestionsData(questions));
 	};
 }

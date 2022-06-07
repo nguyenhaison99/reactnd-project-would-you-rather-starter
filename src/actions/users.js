@@ -1,43 +1,40 @@
+import { saveAnswer } from "../utils/API";
 import { addAnswerToQuestion } from "./questions";
-import { saveQuestionAnswer } from "../utils/API";
+import { ADD_ANSWER_TO_USER, ADD_QUESTION_TO_USER, INIT_USERS } from "./types";
 
-export const RECEIVE_USERS = "RECEIVE_USERS";
-export const ADD_ANSWER_TO_USER = "ADD_ANSWER_TO_USER";
-export const ADD_QUESTION_TO_USER = "ADD_QUESTION_TO_USER";
-
-export function receiveUsers(users) {
-	return {
-		type: RECEIVE_USERS,
-		users,
-	};
+export function initUsersData(users) {
+  return {
+    type: INIT_USERS,
+    users,
+  };
 }
 
 function addAnswerToUser(authUser, questionId, answer) {
-	return {
-		type: ADD_ANSWER_TO_USER,
-		authUser,
-		questionId,
-		answer,
-	};
+  return {
+    type: ADD_ANSWER_TO_USER,
+    authUser,
+    questionId,
+    answer,
+  };
 }
 
 export function handleSaveQuestionAnswer(authUser, questionId, answer) {
-	return async (dispatch) => {
-		await dispatch(addAnswerToUser(authUser, questionId, answer));
-		await dispatch(addAnswerToQuestion(authUser, questionId, answer));
+  return async (dispatch) => {
+    await dispatch(addAnswerToUser(authUser, questionId, answer));
+    await dispatch(addAnswerToQuestion(authUser, questionId, answer));
 
-		try {
-			return await saveQuestionAnswer(authUser, questionId, answer);
-		} catch (e) {
-			console.warn("Failed to save QuestionAnswer", e);
-		}
-	};
+    try {
+      return await saveAnswer(authUser, questionId, answer);
+    } catch (e) {
+      console.warn("Failed to save an Answer", e);
+    }
+  };
 }
 
-export function addQuestionToUser({ author, questionId }) {
-	return {
-		type: ADD_QUESTION_TO_USER,
-		questionId,
-		author,
-	};
+export function addQuestionToUser({ author, id }) {
+  return {
+    type: ADD_QUESTION_TO_USER,
+    id,
+    author,
+  };
 }

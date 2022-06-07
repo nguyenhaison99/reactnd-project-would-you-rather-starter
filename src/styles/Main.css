@@ -1,0 +1,13 @@
+.user-card-unanswered {
+    border: 2px solid pink;
+    margin-bottom: 5px;
+}
+
+.user-card-answered {
+    border: 2px solid green;
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    margin-bottom: 10px !important;
+}

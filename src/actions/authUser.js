@@ -1,8 +1,8 @@
-export const SET_AUTH_USER = "SET_AUTH_USER";
+import { SET_AUTH_USER } from "./types";
 
 export function setAuthUser(id) {
-  return {
-    type: SET_AUTH_USER,
-    id,
-  };
+	return {
+		type: SET_AUTH_USER,
+		id,
+	};
 }

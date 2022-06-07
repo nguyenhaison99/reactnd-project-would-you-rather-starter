@@ -1,23 +1,23 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import { Container, Header } from "semantic-ui-react";
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
-export class PageNotFound extends Component {
-	state = {
-		outOfTime: false,
-	};
-	render() {
-		if (this.state.outOfTime === true) return <Redirect to="/" />;
-		return (
-			<Container textAlign="center">
-				<Header as="h2">PageNotFound: 404 Error</Header>
-				<h5>Redirecting you to Home Page in a few seconds.</h5>
-				{setTimeout(() => {
-					this.setState({ outOfTime: !this.state.outOfTime });
-				}, 1500)}
-			</Container>
-		);
-	}
-}
+const styles = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const PageNotFound = () => {
+  return (
+    <div>
+      <h1 style={styles}>404 Question NOT FOUND</h1>
+      <div style={styles}>
+        <Link to='/'>
+          <h3 style={{ color: "red" }}>Return to LOGIN</h3>
+        </Link>
+      </div>
+    </div>
+  );
+};
 
 export default PageNotFound;

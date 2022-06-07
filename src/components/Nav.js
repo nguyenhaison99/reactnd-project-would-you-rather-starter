@@ -1,62 +1,45 @@
+import { Button } from "antd";
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { Menu, Image, Button, Container } from "semantic-ui-react";
+import { NavLink } from "react-router-dom";
+
 import { setAuthUser } from "../actions/authUser";
+import "../styles/Nav.css";
 
 class Nav extends Component {
-	handleLogout = (e) => {
-		e.preventDefault();
-		this.props.setAuthUser(null);
-		localStorage.setItem("authUser", "not_login");
-	};
+  handleOnClick = () => {
+    const { setAuthUser } = this.props;
+    setAuthUser(null);
+  };
 
-	render() {
-		console.log(this.props);
-		const { authUser, users } = this.props;
-		return (
-			authUser && (
-				<Container>
-					<Menu>
-						<Menu.Item name="home" as={NavLink} to="/" />
-						<Menu.Item name="new poll" as={NavLink} to="/addpoll" />
-						<Menu.Item name="leader board" as={NavLink} to="/leaderboard" />
-						<Menu.Menu position="right">
-							<Menu.Item>
-								<span>
-									<Image
-										src={users[authUser].avatarURL}
-										avatar
-										spaced="right"
-										verticalAlign="bottom"
-									/>
-									{users[authUser].name}
-								</span>
-							</Menu.Item>
-							<Menu.Item>
-								<Button
-									content="Logout"
-									labelPosition="right"
-									icon="log out"
-									size="mini"
-									basic
-									compact
-									onClick={this.handleLogout}
-								/>
-							</Menu.Item>
-						</Menu.Menu>
-					</Menu>
-				</Container>
-			)
-		);
-	}
+  render() {
+    const { authUser } = this.props;
+
+    return (
+      <div className='topnav'>
+        <ul>
+          <li>
+            <NavLink to='/home'>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to='/add'>Create new Poll</NavLink>
+          </li>
+          <li>
+            <NavLink to='/leaderboard'>LeaderBroad</NavLink>
+          </li>
+        </ul>
+
+        <h4 className='loginUser'>Current login user: {authUser}</h4>
+        <Button danger onClick={this.handleOnClick}>
+          Logout
+        </Button>
+      </div>
+    );
+  }
 }
 
-function mapStateToProps({ users, authUser }) {
-	return {
-		authUser,
-		users,
-	};
+function mapStateToProps({ authUser }) {
+  return { authUser };
 }
 
 export default connect(mapStateToProps, { setAuthUser })(Nav);
