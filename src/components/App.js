@@ -6,13 +6,14 @@ import { handleInitialData } from "../actions/shared";
 import { setAuthUser } from "../actions/authUser";
 
 import Login from "./Login";
+import PrivateRoute from "./PrivateRoute";
 import Nav from "./Nav";
 import Home from "./Home";
 import NewPoll from "./NewPoll";
 import LeaderBroad from "./LeaderBroad";
+import PollContent from "./PollContent";
 import "../styles/Main.css";
 import "antd/dist/antd.css";
-import PollContent from "./PollContent";
 
 class App extends Component {
   // state = {
@@ -37,13 +38,44 @@ class App extends Component {
         <Router>
           <Fragment>
             {authUser !== null && <Nav />}
-
             <Routes>
               <Route exact path='/' element={<Login />} />
-              <Route path='/home' element={<Home />} />
-              <Route path='/addpoll' element={<NewPoll />} />
-              <Route path='/leaderboard' element={<LeaderBroad />} />
-              <Route path='/questions/:id' element={<PollContent />} />
+              <Route
+                path='/home'
+                element={
+                  <PrivateRoute
+                    Component={Home}
+                    isAuthenticated={authUser !== null}
+                  />
+                }
+              />
+              <Route
+                path='/addpoll'
+                element={
+                  <PrivateRoute
+                    Component={NewPoll}
+                    isAuthenticated={authUser !== null}
+                  />
+                }
+              />
+              <Route
+                path='/leaderboard'
+                element={
+                  <PrivateRoute
+                    Component={LeaderBroad}
+                    isAuthenticated={authUser !== null}
+                  />
+                }
+              />
+              <Route
+                path='/questions/:id'
+                element={
+                  <PrivateRoute
+                    Component={PollContent}
+                    isAuthenticated={authUser !== null}
+                  />
+                }
+              />
             </Routes>
           </Fragment>
         </Router>
