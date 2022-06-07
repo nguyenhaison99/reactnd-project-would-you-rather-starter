@@ -1,3 +1,18 @@
+SonNh65
+
+## Installation
+
+Clone the repository, change directories, and use NPM to install the dependencies.
+
+```bash
+$ git clone https://github.com/nguyenhaison99/reactnd-project-would-you-rather-starter.git
+$ cd reactnd-project-would-you-rather-starter
+$ npm install
+$ npm start
+```
+
+# Below is note from Udacity
+
 # Would You Rather Project
 
 ## Data
