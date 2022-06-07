@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import { Row, Col, Progress, Image, Card } from "antd";
-import { CheckCircleOutlined } from "@ant-design/icons";
+import { ArrowDownOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 
 export const YourVote = () => {
   return (
     <Fragment>
       <p style={{ color: "red" }}>
-        Your vote <CheckCircleOutlined />
+        Your vote <ArrowDownOutlined />
       </p>
     </Fragment>
   );

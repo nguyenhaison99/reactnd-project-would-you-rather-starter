@@ -12,6 +12,8 @@ import Home from "./Home";
 import NewPoll from "./NewPoll";
 import LeaderBroad from "./LeaderBroad";
 import PollContent from "./PollContent";
+import PageNotFound from "./PageNotFound";
+
 import "../styles/Main.css";
 import "antd/dist/antd.css";
 
@@ -50,7 +52,7 @@ class App extends Component {
                 }
               />
               <Route
-                path='/addpoll'
+                path='/add'
                 element={
                   <PrivateRoute
                     Component={NewPoll}
@@ -76,6 +78,7 @@ class App extends Component {
                   />
                 }
               />
+              <Route path='/*' element={<PageNotFound />} />
             </Routes>
           </Fragment>
         </Router>

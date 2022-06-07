@@ -1,6 +1,6 @@
 import { saveAnswer } from "../utils/API";
 import { addAnswerToQuestion } from "./questions";
-import { ADD_ANSWER_TO_USER, INIT_USERS } from "./types";
+import { ADD_ANSWER_TO_USER, ADD_QUESTION_TO_USER, INIT_USERS } from "./types";
 
 export function initUsersData(users) {
   return {
@@ -28,5 +28,13 @@ export function handleSaveQuestionAnswer(authUser, questionId, answer) {
     } catch (e) {
       console.warn("Failed to save an Answer", e);
     }
+  };
+}
+
+export function addQuestionToUser({ author, id }) {
+  return {
+    type: ADD_QUESTION_TO_USER,
+    id,
+    author,
   };
 }
