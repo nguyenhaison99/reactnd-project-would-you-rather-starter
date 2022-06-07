@@ -20,13 +20,16 @@ class LoginDropdown extends Component {
   handleOnClick = (e) => {
     const { setAuthUser } = this.props;
     setAuthUser(e.key);
+    this.setState({ loginSucceded: !this.state.loginSucceded });
 
-    // localStorage.setItem("authUser", e.key);
-    this.setState({ loginSucceded: true });
+    // localStorage.setItem("authUser", JSON.stringify(e.key));
   };
 
   render() {
-    if (this.state.loginSucceded === true) return <Navigate to='/home' />;
+    console.log(this.state.loginSucceded);
+    if (this.state.loginSucceded === true) {
+      return <Navigate to='/home' />;
+    }
 
     const { users } = this.props;
     return (

@@ -18,13 +18,7 @@ export const PollQuestion = (props) => {
   function handleOnClick() {
     handleSaveQuestionAnswer(authUser, question.id, value);
     navigate("/home");
-    // setIsSubmit(true);
   }
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => console.log("Initial timeout!"), 1000);
-  //   return () => clearTimeout(timer);
-  // }, [isSubmit]);
 
   return (
     <div>

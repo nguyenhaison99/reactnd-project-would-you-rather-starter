@@ -23,17 +23,32 @@ class App extends Component {
   // };
 
   componentDidMount() {
-    const { handleInitialData } = this.props;
-    // const prevAuthUser = localStorage.getItem("authUser");
-    handleInitialData();
-    // if (prevAuthUser !== null) {
-    //   this.setState({ prevAuthUser });
-    //   setAuthUser(prevAuthUser);
-    // }
+    const { handleInitialData, setAuthUser } = this.props;
+    handleInitialData().then(() => {
+      // const prevAuthUser = JSON.parse(localStorage.getItem("authUser"));
+      // if (prevAuthUser !== null) {
+      //   this.setState({ prevAuthUser });
+      //   setAuthUser(prevAuthUser);
+      // }
+    });
   }
 
   render() {
     const { authUser } = this.props;
+
+    if (authUser === null) {
+      return (
+        <div className='App'>
+          <Router>
+            <Fragment>
+              <Routes>
+                <Route path='/*' element={<Login />} />
+              </Routes>
+            </Fragment>
+          </Router>
+        </div>
+      );
+    }
 
     return (
       <div className='App'>
@@ -41,44 +56,52 @@ class App extends Component {
           <Fragment>
             {authUser !== null && <Nav />}
             <Routes>
-              <Route exact path='/' element={<Login />} />
+              <Route exact path='/login' element={<Login />} />
               <Route
+                exact
                 path='/home'
                 element={
-                  <PrivateRoute
-                    Component={Home}
-                    isAuthenticated={authUser !== null}
-                  />
+                  <Home />
+                  // <PrivateRoute
+                  //   Component={Home}
+                  //   isAuthenticated={authUser !== null}
+                  // />
                 }
               />
               <Route
+                exact
                 path='/add'
                 element={
-                  <PrivateRoute
-                    Component={NewPoll}
-                    isAuthenticated={authUser !== null}
-                  />
+                  <NewPoll />
+                  // <PrivateRoute
+                  //   Component={NewPoll}
+                  //   isAuthenticated={authUser !== null}
+                  // />
                 }
               />
               <Route
+                exact
                 path='/leaderboard'
                 element={
-                  <PrivateRoute
-                    Component={LeaderBroad}
-                    isAuthenticated={authUser !== null}
-                  />
+                  <LeaderBroad />
+                  // <PrivateRoute
+                  //   Component={LeaderBroad}
+                  //   isAuthenticated={authUser !== null}
+                  // />
                 }
               />
               <Route
+                exact
                 path='/questions/:id'
                 element={
-                  <PrivateRoute
-                    Component={PollContent}
-                    isAuthenticated={authUser !== null}
-                  />
+                  <PollContent />
+                  // <PrivateRoute
+                  //   Component={PollContent}
+                  //   isAuthenticated={authUser !== null}
+                  // />
                 }
               />
-              <Route path='/*' element={<PageNotFound />} />
+              <Route path='*' element={<PageNotFound />} />
             </Routes>
           </Fragment>
         </Router>

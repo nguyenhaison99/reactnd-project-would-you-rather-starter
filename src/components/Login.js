@@ -1,8 +1,9 @@
 import React from "react";
 import { Row, Col, Image } from "antd";
 import LoginDropdown from "./LoginDropdown";
+import { Navigate, useLocation } from "react-router";
 
-export default function Login() {
+function Login() {
   return (
     <div>
       <Row justify='center'>
@@ -17,3 +18,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;
